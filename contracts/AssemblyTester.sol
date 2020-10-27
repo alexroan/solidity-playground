@@ -4,10 +4,9 @@ import "@nomiclabs/buidler/console.sol";
 
 contract AssemblyTester {
 
-    function firstTest() public {
-        bytes32 requestId = "1234";
-        uint256 firstData = 5555;
-        uint256 secondData = 9999;
+    event Encoded(bytes32 requestId, bytes data);
+
+    function firstTest(bytes32 requestId, uint firstData, uint secondData) public returns (bytes memory){
 
         bytes memory data = abi.encode(requestId, firstData, secondData);
 
@@ -18,5 +17,7 @@ contract AssemblyTester {
         }
         console.logBytes32(requestId);
         console.logBytes32(result);
+
+        emit Encoded(requestId, data);
     }
 }
