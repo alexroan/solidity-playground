@@ -1,0 +1,17 @@
+name: Copycat Action
+on:
+# Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+jobs:
+  copycat:
+    name: 'Copy contracts'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: andstor/copycat-action@v3.2.3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          src_path: /contracts/.
+          dst_path: /output/
+          dst_owner: alexroan
+          dst_repo_name: copycat-output
