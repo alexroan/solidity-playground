@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: andstor/copycat-action@v3.2.3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           src_path: contracts/.
           dst_path: output/
           dst_owner: alexroan
