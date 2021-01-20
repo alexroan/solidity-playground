@@ -2,31 +2,18 @@ name: Copycat Action
 on:
 # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master, develop ]
+    branches: [ master ]
 jobs:
   copy-master:
-    name: 'Copy master contracts'
+    name: 'Copy contracts'
     runs-on: ubuntu-latest
     steps:
-      - uses: andstor/copycat-action@v3.2.3
+      - uses: alexroan/copycat-action
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.DESTINATION_TOKEN }}
           src_path: contracts/.
           dst_path: output/
           dst_owner: alexroan
           dst_repo_name: copycat-output
           src_branch: master
           dst_branch: master
-  copy-develop:
-    name: 'Copy develop contracts'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: andstor/copycat-action@v3.2.3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          src_path: contracts/.
-          dst_path: output/
-          dst_owner: alexroan
-          dst_repo_name: copycat-output
-          src_branch: develop
-          dst_branch: develop
